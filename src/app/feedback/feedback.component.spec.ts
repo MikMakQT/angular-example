@@ -39,13 +39,28 @@ describe('FeedbackComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
-
+  // Tests done in class
   it('cancel-button should navigate to home page', () => {
     component.cancel();
     expect(routerSpy).toHaveBeenCalledWith(['home']);
   });
 
+  it('should mark phone as invalid if it has less than 10 characters', () => {
+    const ctrl = component.fbForm.get('phone');
+    ctrl?.setValue('12345');
+    expect(ctrl?.hasError('minlength')).toBeTrue();
+  });
 
-  
+  it('should mark phone as invalid if it has more than 10 characters', () => {
+    const ctrl = component.fbForm.get('phone');
+    ctrl?.setValue('1234567890123');
+    expect(ctrl?.hasError('maxlength')).toBeTrue();
+  });
+
+  it('should mark email as invalid if it is not a valid email address', () => {
+    const ctrl = component.fbForm.get('email');
+    ctrl?.setValue('invalid-email');
+    expect(ctrl?.hasError('email')).toBeTrue();
+  });
+
 });
