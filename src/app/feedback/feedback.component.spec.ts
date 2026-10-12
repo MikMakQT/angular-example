@@ -89,9 +89,18 @@ describe('FeedbackComponent', () => {
     expect(component.fbForm.get('phone')?.value).toBeNull();
   });
 
-  
+  it('should mark name as invalid if it has less than 2 characters', () => {
+  const ctrl = component.fbForm.get('name');
+  ctrl?.setValue('A');
 
+  expect(ctrl?.hasError('minlength')).toBeTrue();
+});
 
+it('should mark title as invalid if it contains numbers', () => {
+  const ctrl = component.fbForm.get('title');
+  ctrl?.setValue('Bug123');
 
+  expect(ctrl?.hasError('pattern')).toBeTrue();
+});
 
 });
