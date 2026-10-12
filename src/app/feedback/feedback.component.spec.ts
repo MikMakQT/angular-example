@@ -63,4 +63,35 @@ describe('FeedbackComponent', () => {
     expect(ctrl?.hasError('email')).toBeTrue();
   });
 
+
+  //Kotona tehdyt
+  it('should require a description', () => {
+    const control = component.fbForm.get('description');
+    control?.setValue('');
+    expect(control?.hasError('required')).toBeTrue();
+  });
+
+    it('should clear the form after submit', () => {
+    component.fbForm.setValue({
+      title: 'Feedback',
+      description: 'A useful suggestion',
+      name: 'Test User',
+      email: 'student@example.com',
+      phone: '1234567890',
+      termsAndConditions: false
+    });
+  
+        component.onSubmit();
+
+    expect(component.fbForm.get('title')?.value).toBeNull();
+    expect(component.fbForm.get('description')?.value).toBeNull();
+    expect(component.fbForm.get('email')?.value).toBeNull();
+    expect(component.fbForm.get('phone')?.value).toBeNull();
+  });
+
+  
+
+
+
+
 });
