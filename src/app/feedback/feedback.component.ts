@@ -26,6 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class FeedbackComponent {
   headerText: string = "Give feedback";
+  testing: string = "Testing";
+
 
   fbForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z ]*$')]),
@@ -39,7 +41,8 @@ export class FeedbackComponent {
   constructor(public router: Router) { }
 
   ngOnInit(): void {
-  }
+    this.testing = "Testing";
+   }
 
   cancel() {
     this.router.navigate(['home']);
